@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Content Security Policy: 同じフォルダ内のファイルのみ許可 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none';
+    style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src
+    'self' data: https:; font-src 'self'; />
+
+    <!-- X-Content-Type-Options: MIMEタイプの誤判定を防ぐ -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
+    <!-- Referrer Policy: リファラー情報を制限 -->
+    <meta name="referrer" content="no-referrer" />
+
+    <title>Portfolio - Your Name</title>
+
+    <!-- CSS をインライン化（外部読み込みが効かない環境向け） -->
+    <style>
+      /* Inlined from css/style.css */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: #0a0a0a;
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      /* カーソルエフェクト */
+      .cursor-glow {
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(99, 102, 241, 0.15),
+          transparent 70%
+        );
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s;
+        z-index: 9999;
+      }
+
+      /* ナビゲーション */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 2rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: rgba(10, 10, 10, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #6366f1, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: all 0.3s;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #6366f1, #ec4899);
+        transition: width 0.3s;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* ヒーローセクション */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 50%,
+            rgba(99, 102, 241, 0.1),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 50%,
+            rgba(236, 72, 153, 0.1),
+            transparent 50%
+          );
+      }
+
+      .floating-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .shape {
+        position: absolute;
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        animation: float 20s infinite ease-in-out;
+      }
+
+      .shape1 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 0.1),
+          rgba(236, 72, 153, 0.1)
+        );
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .shape2 {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(
+          135deg,
+          rgba(236, 72, 153, 0.1),
+          rgba(99, 102, 241, 0.1)
+        );
+        bottom: 20%;
+        right: 10%;
+        animation-delay: -5s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        33% {
+          transform: translate(30px, -30px) rotate(120deg);
+        }
+        66% {
+          transform: translate(-20px, 20px) rotate(240deg);
+        }
+      }
+
+      .hero-content {
+        text-align: center;
+        z-index: 1;
+        max-width: 800px;
+        padding: 0 2rem;
+      }
+
+      .hero-content h1 {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        line-height: 1.1;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradient-shift 5s ease infinite;
+        background-size: 200% 200%;
+      }
+
+      @keyframes gradient-shift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .hero-content p {
+        font-size: clamp(1rem, 3vw, 1.5rem);
+        color: #a0a0a0;
+        margin-bottom: 2rem;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 1rem 2.5rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #6366f1, #ec4899);
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* プロジェクトセクション */
+      .section {
+        padding: 8rem 5%;
+        position: relative;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        text-align: center;
+        margin-bottom: 4rem;
+        font-weight: 800;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .project-card {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        position: relative;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 0.1),
+          rgba(236, 72, 153, 0.1)
+        );
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(99, 102, 241, 0.5);
+        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+      }
+
+      .project-card:hover::before {
+        opacity: 1;
+      }
+
+      .project-image {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, #1e293b, #334155);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-image::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        animation: shimmer 3s infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+      }
+
+      .project-content {
+        padding: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .project-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #fff;
+      }
+
+      .project-content p {
+        color: #a0a0a0;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+
+      .tech-stack {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .tech-tag {
+        padding: 0.4rem 1rem;
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        border-radius: 20px;
+        font-size: 0.85rem;
+        color: #a0a0a0;
+      }
+
+      /* スキルセクション */
+      .skills-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .skill-card {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 2rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s;
+        text-align: center;
+      }
+
+      .skill-card:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateY(-5px);
+      }
+
+      .skill-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .skill-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .skill-card p {
+        color: #a0a0a0;
+        font-size: 0.95rem;
+      }
+
+      /* コンタクトセクション */
+      .contact-content {
+        max-width: 600px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 3rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .form-group label {
+        color: #a0a0a0;
+        font-size: 0.9rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        color: #fff;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: all 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #6366f1;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 150px;
+      }
+
+      /* フッター */
+      footer {
+        text-align: center;
+        padding: 3rem 5%;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #a0a0a0;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      .social-links a {
+        color: #a0a0a0;
+        font-size: 1.5rem;
+        transition: all 0.3s;
+      }
+
+      .social-links a:hover {
+        color: #6366f1;
+        transform: translateY(-3px);
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          padding: 1.5rem 5%;
+        }
+
+        .nav-links {
+          gap: 1rem;
+          font-size: 0.85rem;
+        }
+
+        .section {
+          padding: 5rem 5%;
+        }
+
+        .contact-content {
+          padding: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-glow"></div>
+
+    <nav>
+      <div class="logo">Portfolio</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section id="home" class="hero">
+      <div class="hero-background"></div>
+      <div class="floating-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+      </div>
+      <div class="hero-content">
+        <h1>
+          こんにちは、<br /><span class="gradient-text"
+            >クリエイティブな開発者です</span
+          >
+        </h1>
+        <p>
+          美しいデザインと優れた機能を融合させたWebエクスペリエンスを創造します
+        </p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">作品を見る</a>
+          <a href="#contact" class="btn btn-secondary">お問い合わせ</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2 class="section-title">
+        <span class="gradient-text">Featured Projects</span>
+      </h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">🚀</div>
+          <div class="project-content">
+            <h3>プロジェクト名 1</h3>
+            <p>
+              革新的なWebアプリケーション。ユーザー体験を重視した直感的なインターフェース設計。
+            </p>
+            <div class="tech-stack">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MongoDB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">🎨</div>
+          <div class="project-content">
+            <h3>プロジェクト名 2</h3>
+            <p>
+              クリエイティブなデザインと最新技術を融合したポートフォリオサイト。
+            </p>
+            <div class="tech-stack">
+              <span class="tech-tag">Vue.js</span>
+              <span class="tech-tag">Three.js</span>
+              <span class="tech-tag">GSAP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">⚡</div>
+          <div class="project-content">
+            <h3>プロジェクト名 3</h3>
+            <p>
+              高速で効率的なEコマースプラットフォーム。スケーラブルなアーキテクチャを採用。
+            </p>
+            <div class="tech-stack">
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Tailwind</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <h2 class="section-title">
+        <span class="gradient-text">Skills & Expertise</span>
+      </h2>
+      <div class="skills-container">
+        <div class="skill-card">
+          <div class="skill-icon">💻</div>
+          <h3>Frontend Development</h3>
+          <p>React, Vue, Next.js を使用したモダンなWebアプリケーション開発</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🎨</div>
+          <h3>UI/UX Design</h3>
+          <p>ユーザー中心の直感的なインターフェースデザイン</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">⚙️</div>
+          <h3>Backend Development</h3>
+          <p>Node.js, Python を使用したスケーラブルなAPI開発</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📱</div>
+          <h3>Responsive Design</h3>
+          <p>あらゆるデバイスに最適化されたレスポンシブWebデザイン</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2 class="section-title">
+        <span class="gradient-text">Get In Touch</span>
+      </h2>
+      <div class="contact-content">
+        <form class="contact-form">
+          <div class="form-group">
+            <label>お名前</label>
+            <input type="text" placeholder="山田太郎" required />
+          </div>
+          <div class="form-group">
+            <label>メールアドレス</label>
+            <input type="email" placeholder="example@email.com" required />
+          </div>
+          <div class="form-group">
+            <label>メッセージ</label>
+            <textarea
+              placeholder="お気軽にメッセージをお送りください..."
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%">
+            送信する
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="social-links">
+        <a href="#" title="Email">📧</a>
+        <a href="#" title="Twitter">🐦</a>
+        <a href="#" title="LinkedIn">💼</a>
+      </div>
+      <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </footer>
+
+    <!-- 相対パスで同じディレクトリ内のJSを読み込む -->
+    <script src="./js/script.js"></script>
+  </body>
+</html>
