@@ -1,0 +1,16 @@
+/* responsive.css: small-screen adjustments */
+@media (max-width: 768px) {
+  nav {
+    padding: 1.5rem 5%;
+  }
+  .nav-links {
+    gap: 1rem;
+    font-size: 0.85rem;
+  }
+  .section {
+    padding: 5rem 5%;
+  }
+  .contact-content {
+    padding: 2rem;
+  }
+}
