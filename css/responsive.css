@@ -1,4 +1,9 @@
 /* responsive.css: small-screen adjustments */
+/*
+  responsive.css
+  - モバイルや小さいスクリーン向けの調整を集めたファイルです。
+  - レイアウトやテキストサイズ、パディング等を小画面向けに最適化します。
+*/
 @media (max-width: 768px) {
   nav {
     padding: 1.5rem 5%;

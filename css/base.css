@@ -13,7 +13,12 @@ body {
   overflow-x: hidden;
 }
 
-/* カーソルエフェクト (要素がある場合のみ) */
+/*
+  カーソルエフェクト (cursor-glow)
+  - マウス位置に追従する大きな放射状グロー。
+  - 視覚的アクセント用。pointer-events:none にしてクリックを妨げない。
+  - もしこの要素が DOM に無ければ JS は何もしません。
+*/
 .cursor-glow {
   position: fixed;
   width: 500px;

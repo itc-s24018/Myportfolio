@@ -1,4 +1,8 @@
-/* layout.css: navigation, hero, grid and section layout */
+/*
+  layout.css
+  - ナビゲーション、ヒーロー、セクションなどのページ全体の構造を定義します。
+  - レイアウトに関する幅、配置、グリッドの定義がここにあります。
+*/
 nav {
   position: fixed;
   top: 0;

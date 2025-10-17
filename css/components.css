@@ -1,4 +1,8 @@
-/* components.css: cards, buttons, tags, forms */
+/*
+  components.css
+  - 再利用可能な UI コンポーネント（ボタン、カード、タグ、フォーム等）をまとめています。
+  - これによりスタイルの一貫性を保ち、コンポーネント単位で管理できます。
+*/
 .nav-links a {
   color: #fff;
   text-decoration: none;

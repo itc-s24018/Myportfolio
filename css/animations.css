@@ -1,5 +1,10 @@
 /* animations.css: keyframes and decorative animations */
 .shape {
+  /*
+  animations.css
+  - ページ内の装飾アニメーション（浮遊するシェイプ、shimmer、gradient シフト等）を定義します。
+  - keyframes をここに集約することで、視覚演出を独立して管理できます。
+*/
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   animation: float 20s infinite ease-in-out;
 }
