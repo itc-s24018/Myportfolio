@@ -1,4 +1,3 @@
-/* base.css: reset and global base styles */
 * {
   margin: 0;
   padding: 0;
@@ -8,8 +7,9 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  background: #0a0a0a;
-  color: #fff;
+  /* 優しい青を基調にしたダークトーンのグラデーション */
+  background: linear-gradient(180deg, #0b3d66 0%, #071735 100%);
+  color: #ffffff; /* テキストは白のままコントラストを確保 */
   overflow-x: hidden;
 }
 
@@ -17,7 +17,7 @@ body {
   カーソルエフェクト (cursor-glow)
   - マウス位置に追従する大きな放射状グロー。
   - 視覚的アクセント用。pointer-events:none にしてクリックを妨げない。
-  - もしこの要素が DOM に無ければ JS は何もしません。
+  - もしこの要素が DOM に無ければ JS は何もしない。
 */
 .cursor-glow {
   position: fixed;

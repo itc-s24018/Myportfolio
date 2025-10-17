@@ -1,7 +1,6 @@
 /*
   components.css
-  - 再利用可能な UI コンポーネント（ボタン、カード、タグ、フォーム等）をまとめています。
-  - これによりスタイルの一貫性を保ち、コンポーネント単位で管理できます。
+  - 再利用可能な UI コンポーネント（ボタン、カード、タグ、フォーム等）をまとめている。
 */
 .nav-links a {
   color: #fff;
@@ -105,6 +104,21 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s;
   text-align: center;
+}
+
+/* skill-icon: 勉強した技術セクションのロゴ/アイコン表示
+   - 明るめのカラーを与えて背景上で目立たせる
+   - 必要に応じて円形背景を付けて可読性を確保 */
+.skill-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #eaf4ff; /* 明るい淡い青 */
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.5rem;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-content {

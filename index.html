@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="./css/base.css" />
     <link rel="stylesheet" href="./css/layout.css" />
     <link rel="stylesheet" href="./css/components.css" />
+    <link rel="stylesheet" href="./css/skills.css" />
     <link rel="stylesheet" href="./css/animations.css" />
     <link rel="stylesheet" href="./css/responsive.css" />
   </head>
@@ -42,81 +43,67 @@
       <div class="floating-shapes">
         <div class="shape shape1"></div>
         <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="shape shape4"></div>
+        <div class="shape shape5"></div>
       </div>
       <div class="hero-content">
         <h1>
           <span class="gradient-text">好奇心旺盛な開発者です</span>
         </h1>
 
-        <div class="cta-buttons">
-          <a href="#contact" class="btn btn-secondary">お問い合わせ</a>
-        </div>
+        <p>
+          🚀インフラ系やフロントエンドに興味があります！
+          気になった事を余さず何度も早口で聞くので結構うざいです!
+        </p>
       </div>
     </section>
 
     <section id="skills" class="section">
       <h2 class="section-title">
-        <span class="gradient-text">Skills & Expertise</span>
+        <span class="gradient-text">勉強した技術</span>
       </h2>
-      <div class="skills-container">
-        <div class="skill-card">
-          <div class="skill-icon">💻</div>
-          <h3>Frontend Development</h3>
-          <p>React, Vue, Next.js を使用したモダンなWebアプリケーション開発</p>
+      <h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <span class="skill-logo python" aria-hidden="true">Py</span>
+            <span class="skill-text">Python</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-logo java" aria-hidden="true">Jv</span>
+            <span class="skill-text">Java</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-logo js" aria-hidden="true">JS</span>
+            <span class="skill-text">JavaScript</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-logo html" aria-hidden="true">HT</span>
+            <span class="skill-text">HTML</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-logo ts" aria-hidden="true">TS</span>
+            <span class="skill-text">TypeScript</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-logo react" aria-hidden="true">⚛</span>
+            <span class="skill-text">React</span>
+          </div>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon">🎨</div>
-          <h3>UI/UX Design</h3>
-          <p>ユーザー中心の直感的なインターフェースデザイン</p>
-        </div>
-        <div class="skill-card">
-          <div class="skill-icon">⚙️</div>
-          <h3>Backend Development</h3>
-          <p>Node.js, Python を使用したスケーラブルなAPI開発</p>
-        </div>
-        <div class="skill-card">
-          <div class="skill-icon">📱</div>
-          <h3>Responsive Design</h3>
-          <p>あらゆるデバイスに最適化されたレスポンシブWebデザイン</p>
-        </div>
-      </div>
+      </h3>
     </section>
 
     <section id="contact" class="section">
-      <h2 class="section-title">
-        <span class="gradient-text">お問い合わせ</span>
-      </h2>
-      <div class="contact-content">
-        <form class="contact-form">
-          <div class="form-group">
-            <label>お名前</label>
-            <input type="text" placeholder="山田太郎" required />
-          </div>
-          <div class="form-group">
-            <label>メールアドレス</label>
-            <input type="email" placeholder="example@email.com" required />
-          </div>
-          <div class="form-group">
-            <label>メッセージ</label>
-            <textarea
-              placeholder="お気軽にメッセージをお送りください..."
-              required
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%">
-            送信する
-          </button>
-        </form>
-      </div>
+      <h1>ご連絡はこちら</h1>
+      <a href="#" title="Email">📧</a>
+      <a href="#" title="Twitter">🐦</a>
+      <a href="#" title="LinkedIn">💼</a>
+      <a href="#" title="GitHub">🐙</a>
     </section>
 
     <footer>
-      <div class="social-links">
-        <a href="#" title="Email">📧</a>
-        <a href="#" title="Twitter">🐦</a>
-        <a href="#" title="LinkedIn">💼</a>
-      </div>
-      <p>&copy; 2025 Your Name. All rights reserved.</p>
+      <div class="social-links"></div>
+      <p>&copy; 25卒のエンジニア志望 専門学生</p>
     </footer>
 
     <!-- 相対パスで同じディレクトリ内のJSを読み込む -->
